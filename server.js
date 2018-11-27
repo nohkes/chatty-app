@@ -9,7 +9,7 @@ new WebpackDevServer(webpack(config), {
     poll: 1000,
     ignored: /node_modules/
   }
-}).listen(3009, "127.0.0.1", function(err, result) {
+}).listen(3009, "0.0.0.0", function(err, result) {
   if (err) {
     console.log(err);
   }

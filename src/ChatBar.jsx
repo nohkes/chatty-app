@@ -4,7 +4,7 @@ export default class ChartBar extends Component {
   submitEvt = event => {
     if (event.keyCode == 13) {
       this.props.handleSubmit(event.target.value);
-      eventt.target.value = "";
+      event.target.value = "";
     }
   };
   render() {
