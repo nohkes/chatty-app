@@ -30,6 +30,8 @@ class App extends Component {
     };
     this.socket.onmessage = function(event) {
       console.log("received from websock" + event.data);
+      const parser = JSON.parse(event.data);
+      console.log(`${parser.username} said ${parser.content}`);
     };
     console.log("componentDidMount <App />");
     setTimeout(() => {
