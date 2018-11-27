@@ -6,7 +6,7 @@ export default class ChartBar extends Component {
       <footer className="chatbar">
         <input
           className="chatbar-username"
-          placeholder="Your Name (Optional)"
+          placeholder={this.props.currentUser.name}
         />
         <input
           className="chatbar-message"
