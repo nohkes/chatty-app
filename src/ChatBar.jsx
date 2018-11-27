@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
 export default class ChartBar extends Component {
-  submitEvt = evt => {
-    if (evt.keyCode == 13) {
-      this.props.handleSubmit(evt.target.value);
-      evt.target.value = "";
+  submitEvt = event => {
+    if (event.keyCode == 13) {
+      this.props.handleSubmit(event.target.value);
+      eventt.target.value = "";
     }
   };
   render() {
