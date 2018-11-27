@@ -5,11 +5,6 @@ export default class MessageList extends Component {
     const messageProps = this.props.messages.map(element => (
       <Message key={element.id} messages={element} />
     ));
-    return (
-      <main className="messages">
-        {messageProps}
-        <p>hello world</p>
-      </main>
-    );
+    return <main className="messages">{messageProps}</main>;
   }
 }
