@@ -8,8 +8,10 @@ export default class ChartBar extends Component {
     }
   };
   newEvt = event => {
-    this.props.changeUsername(event.target.value);
-    event.target.value = "";
+    if (event.target.value != 0) {
+      this.props.changeUsername(event.target.value);
+      event.target.value = "";
+    }
   };
   render() {
     return (
