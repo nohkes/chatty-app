@@ -2,12 +2,13 @@ import React, { Component } from "react";
 // import "./styles.scss";
 import MessageList from "./MessageList.jsx";
 import ChatBar from "./ChatBar.jsx";
-
+import Notification from "./Notification.jsx";
 class App extends Component {
   constructor(props) {
     super(props);
     this.socket = new WebSocket("ws://localhost:3010");
     this.state = {
+      users: 0,
       currentUser: { name: "Bob" }, // optional. if currentUser is not defined, it means the user is Anonymous
       messages: []
     };
@@ -19,10 +20,14 @@ class App extends Component {
     this.socket.onmessage = event => {
       console.log("received from websock" + event.data);
       const parser = JSON.parse(event.data);
-      const messages = this.state.messages.concat(parser);
-      this.setState({ messages: messages });
-      console.log(`${parser.username} said ${parser.content}`);
-      console.log(event);
+      if (parser.type === "numOfUsers") {
+        this.setState({ users: parser.numOfUsers });
+      } else {
+        const messages = this.state.messages.concat(parser);
+        this.setState({ messages: messages });
+        console.log(`${parser.username} said ${parser.content}`);
+        console.log(event);
+      }
     };
 
     console.log("componentDidMount <App />");
@@ -64,11 +69,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar">
-          <a href="/" className="navbar-brand">
-            Chatty App
-          </a>
-        </nav>
+        <Notification users={this.state.users} />
         <MessageList messages={this.state.messages} />
         <ChatBar
           currentUser={this.state.currentUser}

@@ -17,7 +17,7 @@ const server = express()
 
 // Create the WebSockets server
 const wss = new SocketServer({ server });
-
+let counter = 0;
 const createMsg = msg => {
   msg.type = "incomingMessage";
   msg.id = uuidv1();
@@ -27,6 +27,9 @@ const notification = notification => {
   notification.type = "notification";
   notification.id = uuidv1();
   return JSON.stringify(notification);
+};
+const sendUsers = num => {
+  return JSON.stringify(num);
 };
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach(function each(client) {
@@ -39,7 +42,11 @@ wss.broadcast = function broadcast(data) {
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on("connection", ws => {
+  counter++;
+  console.log(counter);
   console.log("Client connected");
+  const numOfUsers = { type: "numOfUsers", numOfUsers: wss.clients.size };
+  wss.broadcast(sendUsers(numOfUsers));
   ws.on("message", function incoming(data) {
     console.log(data);
     const message = JSON.parse(data);
@@ -57,5 +64,10 @@ wss.on("connection", ws => {
       // wss.broadcast(createMsg(message));
     }
   });
-  ws.on("close", () => console.log("Client disconnected"));
+  ws.on("close", () => {
+    console.log("Client disconnected");
+    const numOfUsers = { type: "numOfUsers", numOfUsers: wss.clients.size };
+    wss.broadcast(sendUsers(numOfUsers));
+    counter--;
+  });
 });
