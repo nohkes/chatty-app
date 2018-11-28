@@ -24,6 +24,7 @@ class App extends Component {
       console.log(`${parser.username} said ${parser.content}`);
       console.log(event);
     };
+
     console.log("componentDidMount <App />");
     setTimeout(() => {
       console.log("Simulating incoming message");
@@ -52,6 +53,7 @@ class App extends Component {
   };
   handleSubmit = input => {
     const newMessage = {
+      type: "incomingMessage",
       username: this.state.currentUser.name,
       content: input
     };
