@@ -7,10 +7,17 @@ export default class ChartBar extends Component {
       event.target.value = "";
     }
   };
+  newEvt = event => {
+    if (event.keyCode == 13) {
+      this.props.changeUsername(event.target.value);
+      event.target.value = "";
+    }
+  };
   render() {
     return (
       <footer className="chatbar">
         <input
+          onKeyUp={this.newEvt}
           className="chatbar-username"
           placeholder={this.props.currentUser.name}
         />

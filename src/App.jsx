@@ -39,6 +39,9 @@ class App extends Component {
       this.setState({ messages: messages });
     }, 3000);
   }
+  changeUsername = user => {
+    this.setState({ currentUser: { name: user } });
+  };
   handleSubmit = input => {
     const newMessage = {
       username: this.state.currentUser.name,
@@ -60,6 +63,7 @@ class App extends Component {
         <ChatBar
           currentUser={this.state.currentUser}
           handleSubmit={this.handleSubmit}
+          changeUsername={this.changeUsername}
         />
       </div>
     );
