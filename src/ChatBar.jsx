@@ -8,10 +8,8 @@ export default class ChartBar extends Component {
     }
   };
   newEvt = event => {
-    // if (event.keyCode == 13) {
     this.props.changeUsername(event.target.value);
     event.target.value = "";
-    // }
   };
   render() {
     return (
