@@ -47,3 +47,8 @@ npm run lint
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
 * UUID
 * Websockets
+
+### Screenshots
+https://github.com/nohkes/chatty-app/blob/master/Screenshot%20from%202018-11-28%2015-09-59.png
+https://github.com/nohkes/chatty-app/blob/master/Screenshot%20from%202018-11-28%2015-11-25.png
+https://github.com/nohkes/chatty-app/blob/master/Screenshot%20from%202018-11-28%2015-14-00.png
