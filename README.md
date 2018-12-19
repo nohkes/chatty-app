@@ -19,6 +19,9 @@ cd /chatty-app
 npm install
 npm start
 open http://localhost:3009
+Start Server via cd into chatty_server
+node server.js
+
 ```
 
 ### Static Files
