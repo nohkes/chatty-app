@@ -46,15 +46,17 @@ class App extends Component {
     }, 3000);
   }
   changeUsername = user => {
-    alert(`${this.state.currentUser.name} has changed their name to ${user}`);
+    // alert(`${this.state.currentUser.name} has changed their name to ${user}`);
     const notification = {
       type: "postNotification",
+      name: user,
       content: `${
         this.state.currentUser.name
       } has changed their name to ${user}`
     };
     this.socket.send(JSON.stringify(notification));
-    this.setState({ currentUser: { name: user } });
+    this.setState({ currentUser: { ...this.state.currentUser,
+      name: user } });
   };
   handleSubmit = input => {
     const newMessage = {

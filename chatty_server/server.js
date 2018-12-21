@@ -26,7 +26,7 @@ const createMsg = msg => {
 };
 //handle notification
 const notification = notification => {
-  notification.type = "notification";
+  // notification.type = "notification";
   notification.id = uuidv1();
   return JSON.stringify(notification);
 };
@@ -57,7 +57,7 @@ wss.on("connection", ws => {
         // handle incoming message
         wss.broadcast(createMsg(message));
         break;
-      case "notification":
+      case "postNotification":
         // handle incoming notification
         wss.broadcast(notification(message));
         break;
